@@ -140,7 +140,7 @@ a { color: var(--accent); text-decoration: none; }
 
 .section__title {
   font-family: var(--mono);
-  font-size: 14px;
+  font-size: 22px;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -199,7 +199,9 @@ a { color: var(--accent); text-decoration: none; }
   border-radius: 14px;
   background: var(--hatch);
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .thumb--lg {
@@ -208,6 +210,53 @@ a { color: var(--accent); text-decoration: none; }
   border-radius: 16px;
   margin-bottom: 28px;
 }
+
+.logo {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 18px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #12171e;
+  border: 1px solid var(--line-strong);
+}
+
+.logo img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.logo--light {
+  background: #f4f5f6;
+  border-color: #f4f5f6;
+}
+
+/* the ATI mark ships with its own dark backdrop — sits straight on the tile */
+.logo--dark {
+  padding: 0;
+  background: none;
+  border: 0;
+}
+
+.logo--dark img { border-radius: 10px; }
+
+.logo--wordmark {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.logo__tld { color: var(--accent); }
+
+.thumb--lg .logo { padding: 20px 26px; }
+.thumb--lg .logo--wordmark { font-size: 30px; }
 
 .thumb__label {
   font-family: var(--mono);
@@ -258,7 +307,7 @@ a { color: var(--accent); text-decoration: none; }
 
 /* keep long lists off the far edge on wide screens */
 .block .roles,
-.block .chips { max-width: 720px; }
+.block .chips { max-width: 920px; }
 
 .chips {
   display: flex;
@@ -271,8 +320,8 @@ a { color: var(--accent); text-decoration: none; }
   border: 1px solid var(--line-chip);
   background: var(--surface);
   border-radius: 999px;
-  font-size: 13px;
-  color: var(--text-soft);
+  font-size: 20px;
+  color: var(--accent);
 }
 
 .roles {
@@ -289,19 +338,19 @@ a { color: var(--accent); text-decoration: none; }
 
 .role__period {
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 18px;
   color: var(--text-faint);
-  min-width: 96px;
+  min-width: 120px;
   padding-top: 3px;
 }
 
 .role__title {
-  font-size: 16px;
+  font-size: 22px;
   margin-bottom: 4px;
 }
 
 .role__company {
-  font-size: 14px;
+  font-size: 20px;
   color: var(--text-dim);
 }
 
@@ -317,19 +366,19 @@ a { color: var(--accent); text-decoration: none; }
   flex-wrap: wrap;
   gap: 40px;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .cta__title {
   font-size: clamp(28px, 4vw, 44px);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.1;
   margin-bottom: 12px;
 }
 
 .cta__sub {
-  font-size: 16px;
+  font-size: 18px;
   color: var(--text-dim);
 }
 
@@ -338,7 +387,7 @@ a { color: var(--accent); text-decoration: none; }
   flex-direction: column;
   gap: 10px;
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .pill {
@@ -516,4 +565,295 @@ a { color: var(--accent); text-decoration: none; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* --------------------------------------------------- hero request diagram */
+/* Geometry lives in the viewBox (520 x 236). The wires are drawn once, the
+   pulse retraces them on a doubled-back path, and the node fills sit on top -
+   so the pulse simply disappears into a node and comes back out. */
+
+.hero__copy { min-width: 0; }
+
+.rf {
+  width: 100%;
+  max-width: 520px;
+  --cycle: 5000ms;
+}
+
+.rf[data-route="cache"] { --cycle: 3540ms; }
+
+.rf__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rf__svg--tall { display: none; }
+
+/* ------- wires */
+.rf-wires path {
+  fill: none;
+  stroke: var(--text-faint);
+  stroke-opacity: 0.7;
+  stroke-width: 1;
+}
+
+.rf-arrow {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ------- pulse */
+.rf-route { visibility: hidden; }
+
+.rf--run[data-route="db"] .rf-route--db,
+.rf--run[data-route="cache"] .rf-route--cache { visibility: visible; }
+
+.rf-trail {
+  fill: none;
+  stroke: var(--accent);
+}
+
+.rf-trail--wide {
+  stroke-width: 1;
+  stroke-opacity: 0.2;
+  stroke-dasharray: 38 900;
+}
+
+.rf-trail--core {
+  stroke-width: 1.4;
+  stroke-opacity: 0.7;
+  stroke-linecap: round;
+  stroke-dasharray: 14 900;
+}
+
+/* dash head travels 0 -> pathLength, in step with the dot */
+.rf__svg--wide .rf-route--db .rf-trail--wide    { --d0: 38px; --d1: -794px; }
+.rf__svg--wide .rf-route--db .rf-trail--core    { --d0: 14px; --d1: -818px; }
+.rf__svg--wide .rf-route--cache .rf-trail--wide { --d0: 38px; --d1: -790px; }
+.rf__svg--wide .rf-route--cache .rf-trail--core { --d0: 14px; --d1: -814px; }
+
+.rf__svg--tall .rf-route--db .rf-trail--wide    { --d0: 38px; --d1: -454px; }
+.rf__svg--tall .rf-route--db .rf-trail--core    { --d0: 14px; --d1: -478px; }
+.rf__svg--tall .rf-route--cache .rf-trail--wide { --d0: 38px; --d1: -592px; }
+.rf__svg--tall .rf-route--cache .rf-trail--core { --d0: 14px; --d1: -616px; }
+
+.rf-dot {
+  display: none;
+  fill: var(--accent);
+  transform-box: view-box;
+  transform-origin: 0 0;
+}
+
+@supports (offset-path: path("M 0 0 L 1 1")) {
+  .rf-dot { display: inline; }
+}
+
+.rf__svg--wide .rf-route--db .rf-dot    { offset-path: path("M 45 50 H 461 H 45"); }
+.rf__svg--wide .rf-route--cache .rf-dot { offset-path: path("M 45 50 H 323 V 186 V 50 H 45"); }
+.rf__svg--tall .rf-route--db .rf-dot    { offset-path: path("M 92 36 V 282 V 36"); }
+.rf__svg--tall .rf-route--cache .rf-dot { offset-path: path("M 92 36 V 200 H 243 H 92 V 36"); }
+
+.rf--run .rf-dot   { animation: rfMove var(--cycle) linear both; }
+.rf--run .rf-trail { animation: rfDash var(--cycle) linear both; }
+
+/* the tail 15.94% of every cycle is the pause between round trips */
+@keyframes rfMove {
+  0%      { offset-distance: 0%; }
+  84.06%  { offset-distance: 100%; }
+  100%    { offset-distance: 100%; }
+}
+
+@keyframes rfDash {
+  0%      { stroke-dashoffset: var(--d0); }
+  84.06%  { stroke-dashoffset: var(--d1); }
+  100%    { stroke-dashoffset: var(--d1); }
+}
+
+/* ------- nodes */
+.rf-node { color: var(--text-meta); }
+
+.rf-node rect {
+  fill: var(--surface);
+  stroke: currentColor;
+  stroke-opacity: 0.5;
+  stroke-width: 1;
+}
+
+.rf-node text {
+  fill: currentColor;
+  font-family: var(--mono);
+  font-size: 14px;
+  text-anchor: middle;
+}
+
+/* arrival is near-instant (~1.3% of the cycle), the decay runs 16% of it */
+.rf--run .rf-node { animation-duration: var(--cycle); animation-timing-function: ease-out; animation-fill-mode: both; }
+
+.rf--run .rf__svg--wide .rf-node--client { animation-name: rfLitClient; }
+.rf--run .rf__svg--wide .rf-node--gw     { animation-name: rfLitGw; }
+.rf--run .rf__svg--wide .rf-node--api    { animation-name: rfLitApi; }
+.rf--run[data-route="db"] .rf__svg--wide .rf-node--pg       { animation-name: rfLitPg; }
+.rf--run[data-route="cache"] .rf__svg--wide .rf-node--redis { animation-name: rfLitRedis; }
+
+/* the tall layout's connectors are long where the wide layout's are short, so
+   its arrivals fall at different points in the cycle and need their own tracks */
+.rf--run .rf__svg--tall .rf-node--client { animation-name: rfTallClient; }
+.rf--run[data-route="db"] .rf__svg--tall .rf-node--gw     { animation-name: rfTallGwDb; }
+.rf--run[data-route="cache"] .rf__svg--tall .rf-node--gw  { animation-name: rfTallGwCache; }
+.rf--run[data-route="db"] .rf__svg--tall .rf-node--api    { animation-name: rfTallApiDb; }
+.rf--run[data-route="cache"] .rf__svg--tall .rf-node--api { animation-name: rfTallApiCache; }
+.rf--run[data-route="db"] .rf__svg--tall .rf-node--pg       { animation-name: rfTallPg; }
+.rf--run[data-route="cache"] .rf__svg--tall .rf-node--redis { animation-name: rfTallRedis; }
+
+@keyframes rfLitClient {
+  0%     { color: var(--accent); }
+  16%    { color: var(--text-meta); }
+  79.01% { color: var(--text-meta); }
+  80.31% { color: var(--accent); }
+  96.31% { color: var(--text-meta); }
+  100%   { color: var(--text-meta); }
+}
+
+@keyframes rfLitGw {
+  0%     { color: var(--text-meta); }
+  7.21%  { color: var(--text-meta); }
+  8.51%  { color: var(--accent); }
+  24.51% { color: var(--text-meta); }
+  63.52% { color: var(--text-meta); }
+  64.82% { color: var(--accent); }
+  80.82% { color: var(--text-meta); }
+  100%   { color: var(--text-meta); }
+}
+
+@keyframes rfLitApi {
+  0%     { color: var(--text-meta); }
+  22.70% { color: var(--text-meta); }
+  24.00% { color: var(--accent); }
+  40.00% { color: var(--text-meta); }
+  51.52% { color: var(--text-meta); }
+  52.82% { color: var(--accent); }
+  68.82% { color: var(--text-meta); }
+  100%   { color: var(--text-meta); }
+}
+
+@keyframes rfLitPg {
+  0%     { color: var(--text-meta); }
+  35.68% { color: var(--text-meta); }
+  36.98% { color: var(--accent); }
+  52.98% { color: var(--text-meta); }
+  100%   { color: var(--text-meta); }
+}
+
+@keyframes rfLitRedis {
+  0%     { color: var(--text-meta); }
+  38.70% { color: var(--text-meta); }
+  40.00% { color: var(--accent); }
+  56.00% { color: var(--text-meta); }
+  100%   { color: var(--text-meta); }
+}
+
+/* ------- placement */
+.hero__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 40px;
+}
+
+@media (min-width: 1000px) {
+  .hero__body {
+    max-width: none;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 60px;
+    align-items: center;
+  }
+
+  /* the name wraps to two lines in half a shell; this keeps it inside them */
+  .hero__name { font-size: clamp(56px, 5.4vw, 78px); }
+}
+
+/* the wide arrangement can't stay legible under ~500px of drawing width, so
+   below the existing mobile breakpoint the flow stands up on end instead */
+@media (max-width: 599px) {
+  .rf { max-width: 330px; }
+  .rf__svg--wide { display: none; }
+  .rf__svg--tall { display: block; }
+}
+
+@keyframes rfTallClient {
+  0%     { color: var(--accent); }
+  16%    { color: var(--text-meta); }
+  79.72% { color: var(--text-meta); }
+  81.02% { color: var(--accent); }
+  97.02% { color: var(--text-meta); }
+  100%   { color: var(--text-meta); }
+}
+
+@keyframes rfTallGwDb {
+  0%     { color: var(--text-meta); }
+  9.29%  { color: var(--text-meta); }
+  10.59% { color: var(--accent); }
+  26.59% { color: var(--text-meta); }
+  65.33% { color: var(--text-meta); }
+  66.63% { color: var(--accent); }
+  82.63% { color: var(--text-meta); }
+  100%   { color: var(--text-meta); }
+}
+
+@keyframes rfTallGwCache {
+  0%     { color: var(--text-meta); }
+  6.97%  { color: var(--text-meta); }
+  8.27%  { color: var(--accent); }
+  24.27% { color: var(--text-meta); }
+  69.15% { color: var(--text-meta); }
+  70.45% { color: var(--accent); }
+  86.45% { color: var(--text-meta); }
+  100%   { color: var(--text-meta); }
+}
+
+@keyframes rfTallApiDb {
+  0%     { color: var(--text-meta); }
+  23.3%  { color: var(--text-meta); }
+  24.6%  { color: var(--accent); }
+  40.6%  { color: var(--text-meta); }
+  51.32% { color: var(--text-meta); }
+  52.62% { color: var(--accent); }
+  68.62% { color: var(--text-meta); }
+  100%   { color: var(--text-meta); }
+}
+
+@keyframes rfTallApiCache {
+  0%     { color: var(--text-meta); }
+  17.91% { color: var(--text-meta); }
+  19.21% { color: var(--accent); }
+  35.21% { color: var(--text-meta); }
+  55.41% { color: var(--text-meta); }
+  56.71% { color: var(--accent); }
+  72.71% { color: var(--text-meta); }
+  100%   { color: var(--text-meta); }
+}
+
+@keyframes rfTallPg {
+  0%     { color: var(--text-meta); }
+  37.31% { color: var(--text-meta); }
+  38.61% { color: var(--accent); }
+  54.61% { color: var(--text-meta); }
+  100%   { color: var(--text-meta); }
+}
+
+@keyframes rfTallRedis {
+  0%     { color: var(--text-meta); }
+  35.79% { color: var(--text-meta); }
+  37.09% { color: var(--accent); }
+  53.09% { color: var(--text-meta); }
+  100%   { color: var(--text-meta); }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .rf, .rf * { animation: none !important; }
+  .rf-flow { display: none; }
+  .rf-node { color: var(--accent); }
+  .rf-node rect { stroke-opacity: 0.55; }
+  .rf-wires path { stroke: var(--accent); stroke-opacity: 0.45; }
 }

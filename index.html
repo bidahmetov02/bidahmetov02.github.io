@@ -21,9 +21,103 @@
       </div>
 
       <div class="hero__body">
-        <div class="eyebrow">Available for work</div>
-        <h1 class="hero__name">Bekzhan Bidakhmetov</h1>
-        <p class="hero__lede">Backend-focused software engineer specializing in Python. I build RESTful APIs with FastAPI and Django, design database schemas in PostgreSQL, and ship production services in agile teams.</p>
+        <div class="hero__copy">
+          <div class="eyebrow">Available for work</div>
+          <h1 class="hero__name">Bekzhan Bidakhmetov</h1>
+          <p class="hero__lede">Backend-focused software engineer specializing in Python. I build RESTful APIs with FastAPI and Django, design database schemas in PostgreSQL, and ship production services in agile teams.</p>
+        </div>
+
+        <div class="rf" id="reqflow" data-route="db" aria-hidden="true">
+          <svg class="rf__svg rf__svg--wide" viewBox="0 0 520 236" focusable="false">
+
+            <g class="rf-wires">
+              <path d="M82 50H129M235 50H282M364 50H411M323 70V166"/>
+              <path class="rf-arrow" d="M124.5 46.5L128 50L124.5 53.5M277.5 46.5L281 50L277.5 53.5M406.5 46.5L410 50L406.5 53.5M319.5 161.5L323 165L326.5 161.5"/>
+            </g>
+
+            <g class="rf-flow">
+              <g class="rf-route rf-route--db">
+                <path class="rf-trail rf-trail--wide" d="M45 50H461H45"/>
+                <path class="rf-trail rf-trail--core" d="M45 50H461H45"/>
+                <circle class="rf-dot" r="3.1"/>
+              </g>
+              <g class="rf-route rf-route--cache">
+                <path class="rf-trail rf-trail--wide" d="M45 50H323V186V50H45"/>
+                <path class="rf-trail rf-trail--core" d="M45 50H323V186V50H45"/>
+                <circle class="rf-dot" r="3.1"/>
+              </g>
+            </g>
+
+            <g class="rf-nodes">
+              <g class="rf-node rf-node--client">
+                <rect x="8" y="30" width="74" height="40" rx="10"/>
+                <text x="45" y="54">Client</text>
+              </g>
+              <g class="rf-node rf-node--gw">
+                <rect x="129" y="30" width="106" height="40" rx="10"/>
+                <text x="182" y="54">API Gateway</text>
+              </g>
+              <g class="rf-node rf-node--api">
+                <rect x="282" y="30" width="82" height="40" rx="10"/>
+                <text x="323" y="54">FastAPI</text>
+              </g>
+              <g class="rf-node rf-node--pg">
+                <rect x="411" y="30" width="100" height="40" rx="10"/>
+                <text x="461" y="54">PostgreSQL</text>
+              </g>
+              <g class="rf-node rf-node--redis">
+                <rect x="286" y="166" width="74" height="40" rx="10"/>
+                <text x="323" y="190">Redis</text>
+              </g>
+            </g>
+
+          </svg>
+
+          <svg class="rf__svg rf__svg--tall" viewBox="0 0 320 318" focusable="false">
+
+            <g class="rf-wires">
+              <path d="M92 56V98M92 138V180M92 220V262M133 200H206"/>
+              <path class="rf-arrow" d="M88.5 93.5L92 97L95.5 93.5M88.5 175.5L92 179L95.5 175.5M88.5 257.5L92 261L95.5 257.5M201.5 196.5L205 200L201.5 203.5"/>
+            </g>
+
+            <g class="rf-flow">
+              <g class="rf-route rf-route--db">
+                <path class="rf-trail rf-trail--wide" d="M92 36V282V36"/>
+                <path class="rf-trail rf-trail--core" d="M92 36V282V36"/>
+                <circle class="rf-dot" r="3.1"/>
+              </g>
+              <g class="rf-route rf-route--cache">
+                <path class="rf-trail rf-trail--wide" d="M92 36V200H243H92V36"/>
+                <path class="rf-trail rf-trail--core" d="M92 36V200H243H92V36"/>
+                <circle class="rf-dot" r="3.1"/>
+              </g>
+            </g>
+
+            <g class="rf-nodes">
+              <g class="rf-node rf-node--client">
+                <rect x="55" y="16" width="74" height="40" rx="10"/>
+                <text x="92" y="40">Client</text>
+              </g>
+              <g class="rf-node rf-node--gw">
+                <rect x="39" y="98" width="106" height="40" rx="10"/>
+                <text x="92" y="122">API Gateway</text>
+              </g>
+              <g class="rf-node rf-node--api">
+                <rect x="51" y="180" width="82" height="40" rx="10"/>
+                <text x="92" y="204">FastAPI</text>
+              </g>
+              <g class="rf-node rf-node--pg">
+                <rect x="42" y="262" width="100" height="40" rx="10"/>
+                <text x="92" y="286">PostgreSQL</text>
+              </g>
+              <g class="rf-node rf-node--redis">
+                <rect x="206" y="180" width="74" height="40" rx="10"/>
+                <text x="243" y="204">Redis</text>
+              </g>
+            </g>
+
+          </svg>
+        </div>
       </div>
 
       <div class="hero__foot">
@@ -74,13 +168,16 @@
 
     <section class="section" id="work">
       <div class="section__head">
-        <h2 class="section__title">Work</h2>
+        <h2 class="section__title">Professional Experience
         <span class="section__count">04</span>
       </div>
 
       <div class="grid">
         <a class="card" href="#heart-center">
-          <div class="thumb"><span class="thumb__label">PHP &middot; MVC &middot; Laravel Forge</span></div>
+          <div class="thumb">
+            <div class="logo logo--light"><img src="heart-center-logo.webp" alt="" loading="lazy"></div>
+            <span class="thumb__label">PHP &middot; MVC &middot; Laravel Forge</span>
+          </div>
           <div class="card__body">
             <div class="card__head">
               <h3 class="card__title">Heart Center Foundation</h3>
@@ -91,7 +188,10 @@
         </a>
 
         <a class="card" href="#ainity">
-          <div class="thumb"><span class="thumb__label">NestJS &middot; Vue &middot; OpenAI API</span></div>
+          <div class="thumb">
+            <div class="logo logo--wordmark">Ainity<span class="logo__tld">.io</span></div>
+            <span class="thumb__label">NestJS &middot; Vue &middot; OpenAI API</span>
+          </div>
           <div class="card__body">
             <div class="card__head">
               <h3 class="card__title">Ainity.io</h3>
@@ -102,7 +202,10 @@
         </a>
 
         <a class="card" href="#ati">
-          <div class="thumb"><span class="thumb__label">Azure Pipelines &middot; CI/CD</span></div>
+          <div class="thumb">
+            <div class="logo logo--dark"><img src="ati-logo.png" alt="" loading="lazy"></div>
+            <span class="thumb__label">Azure Pipelines &middot; CI/CD</span>
+          </div>
           <div class="card__body">
             <div class="card__head">
               <h3 class="card__title">ATI</h3>
@@ -113,7 +216,10 @@
         </a>
 
         <a class="card" href="#guidewire">
-          <div class="thumb"><span class="thumb__label">React &middot; Micro frontends &middot; a11y</span></div>
+          <div class="thumb">
+            <div class="logo logo--light"><img src="guidewire-logo.png" alt="" loading="lazy"></div>
+            <span class="thumb__label">React &middot; Micro frontends &middot; a11y</span>
+          </div>
           <div class="card__body">
             <div class="card__head">
               <h3 class="card__title">Guidewire Software</h3>
@@ -256,7 +362,10 @@
         </div>
         <a class="dialog__close" href="#work" aria-label="Close">&times;</a>
       </div>
-      <div class="thumb thumb--lg"><span class="thumb__label">PHP &middot; MVC &middot; Laravel Forge</span></div>
+      <div class="thumb thumb--lg">
+        <div class="logo logo--light"><img src="heart-center-logo.webp" alt="" loading="lazy"></div>
+        <span class="thumb__label">PHP &middot; MVC &middot; Laravel Forge</span>
+      </div>
       <p class="dialog__detail">I maintain a PHP-based web application on an on-demand basis: managing payment integrations, working within an MVC architecture, handling Ubuntu server deployments via Laravel Forge, and delivering bug fixes and new features. The role has sharpened my ability to independently own a production codebase and handle end-to-end delivery.</p>
       <div class="tags">
         <span class="tag">PHP</span>
@@ -281,7 +390,10 @@
         </div>
         <a class="dialog__close" href="#work" aria-label="Close">&times;</a>
       </div>
-      <div class="thumb thumb--lg"><span class="thumb__label">NestJS &middot; Vue &middot; OpenAI API</span></div>
+      <div class="thumb thumb--lg">
+        <div class="logo logo--wordmark">Ainity<span class="logo__tld">.io</span></div>
+        <span class="thumb__label">NestJS &middot; Vue &middot; OpenAI API</span>
+      </div>
       <p class="dialog__detail">Integrated new CRM systems and maintained server-side and front-end code for an AI-powered web application built on Vue.js, NestJS and PostgreSQL. Shipped features weekly through version control, worked closely with the OpenAI API, and focused on deployment efficiency, scalability and cross-team collaboration.</p>
       <div class="tags">
         <span class="tag">NestJS</span>
@@ -307,7 +419,10 @@
         </div>
         <a class="dialog__close" href="#work" aria-label="Close">&times;</a>
       </div>
-      <div class="thumb thumb--lg"><span class="thumb__label">Azure Pipelines &middot; CI/CD</span></div>
+      <div class="thumb thumb--lg">
+        <div class="logo logo--dark"><img src="ati-logo.png" alt="" loading="lazy"></div>
+        <span class="thumb__label">Azure Pipelines &middot; CI/CD</span>
+      </div>
       <p class="dialog__detail">Supported projects and applications for Tengizchevroil, specializing in access management, change management and keeping documentation current. Managed and monitored Azure pipelines — ensuring smooth integrations and resolving pipeline issues — collaborated with business stakeholders on incidents, and took part in regular IT audits.</p>
       <div class="tags">
         <span class="tag">Azure Pipelines</span>
@@ -331,7 +446,10 @@
         </div>
         <a class="dialog__close" href="#work" aria-label="Close">&times;</a>
       </div>
-      <div class="thumb thumb--lg"><span class="thumb__label">React &middot; Micro frontends &middot; a11y</span></div>
+      <div class="thumb thumb--lg">
+        <div class="logo logo--light"><img src="guidewire-logo.png" alt="" loading="lazy"></div>
+        <span class="thumb__label">React &middot; Micro frontends &middot; a11y</span>
+      </div>
       <p class="dialog__detail">Developed a React-based front-end framework with a focus on accessible (a11y) components and micro-frontend architecture. Built tooling with Webpack, tested with Jest across end-to-end, unit and visual suites, and integrated it all into CI/CD via TeamCity — alongside client-facing bug fixes, technical debt work, and close pairing with teammates.</p>
       <div class="tags">
         <span class="tag">React</span>
@@ -379,6 +497,37 @@
     if (opener) history.back();
     else location.hash = '#work';
   });
+})();
+
+// Request-flow diagram: picks the route for each cycle and keeps the CSS
+// animations off the clock while the hero is scrolled away.
+(function () {
+  var rf = document.getElementById('reqflow');
+  if (!rf || !window.IntersectionObserver) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var running = false, timer = null, misses = 0;
+
+  function cycle() {
+    // roughly one cache hit in three, but never back to back and never more
+    // than five apart - a strict alternation would read as decoration
+    var hit = misses >= 4 || (misses >= 1 && Math.random() < 0.34);
+    misses = hit ? 0 : misses + 1;
+    rf.dataset.route = hit ? 'cache' : 'db';
+    rf.classList.remove('rf--run');
+    void rf.offsetWidth; // reflow, so the animations restart from 0
+    rf.classList.add('rf--run');
+    timer = window.setTimeout(cycle, hit ? 3540 : 5000);
+  }
+
+  new IntersectionObserver(function (entries) {
+    var visible = entries[0].isIntersecting;
+    if (visible === running) return;
+    running = visible;
+    if (visible) return cycle();
+    window.clearTimeout(timer);
+    rf.classList.remove('rf--run');
+  }, { threshold: 0 }).observe(rf);
 })();
 </script>
 </body>

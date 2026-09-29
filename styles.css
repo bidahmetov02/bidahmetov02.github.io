@@ -291,6 +291,30 @@ a { color: var(--accent); text-decoration: none; }
   color: var(--text-faint);
 }
 
+/* project cards carry an outbound link, and links can't nest - so the card is
+   a plain box, the title link stretches over it and the url sits above that */
+.card--project { position: relative; }
+
+.card__link { color: inherit; }
+
+.card__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.card__url {
+  position: relative;
+  z-index: 1;
+  font-family: var(--mono);
+  font-size: 11px;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.card__url:hover { color: #ffffff; }
+
 .card__summary {
   font-size: 14px;
   line-height: 1.5;

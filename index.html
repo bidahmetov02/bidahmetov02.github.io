@@ -129,18 +129,21 @@
     <section class="section" id="projects">
       <div class="section__head">
         <h2 class="section__title">Projects</h2>
-        <span class="section__count">Soon</span>
+        <span class="section__count">01</span>
       </div>
 
       <div class="grid">
-        <div class="card card--placeholder" aria-hidden="true">
-          <div class="thumb"><span class="thumb__label">Coming soon</span></div>
+        <div class="card card--project">
+          <div class="thumb">
+            <div class="logo logo--dark"><img src="geoai-logo.png" alt="" loading="lazy"></div>
+            <span class="thumb__label">FastAPI &middot; Gemini OCR &middot; AWS</span>
+          </div>
           <div class="card__body">
             <div class="card__head">
-              <h3 class="card__title">Project</h3>
-              <span class="card__year">—</span>
+              <h3 class="card__title"><a class="card__link" href="#geoai">GeoAI</a></h3>
+              <a class="card__url" href="https://geo-ai.duckdns.org" target="_blank" rel="noopener">geo-ai.duckdns.org &#8599;</a>
             </div>
-            <p class="card__summary">Placeholder — a write-up lands here.</p>
+            <p class="card__summary">Turns scanned Russian geological reports into structured, page-cited facts for every site.</p>
           </div>
         </div>
         <div class="card card--placeholder" aria-hidden="true">
@@ -352,6 +355,39 @@
 
   </div>
 
+  <div class="modal" id="geoai">
+    <a class="modal__backdrop" href="#projects" aria-label="Close"></a>
+    <div class="dialog" role="dialog" aria-modal="true" aria-label="GeoAI">
+      <div class="dialog__head">
+        <div>
+          <div class="eyebrow eyebrow--tight">Document AI &middot; Live</div>
+          <h3 class="dialog__title">GeoAI</h3>
+        </div>
+        <a class="dialog__close" href="#projects" aria-label="Close">&times;</a>
+      </div>
+      <div class="thumb thumb--lg">
+        <div class="logo logo--dark"><img src="geoai-logo.png" alt="" loading="lazy"></div>
+        <span class="thumb__label">FastAPI &middot; Gemini OCR &middot; AWS</span>
+      </div>
+      <p class="dialog__detail">A FastAPI service that takes scanned Russian geological reports — a PDF, or a ZIP/RAR/7z of page images — and returns structured facts for each site. Uploads are hashed, validated and streamed straight to S3, and re-uploading the same file returns the existing document. Processing is queued through SQS FIFO to a separate worker, one job per document, with a dead-letter queue so nothing stays locked.</p>
+      <p class="dialog__detail">Pages with a usable text layer are read directly; the rest go to Gemini 2.5 Flash for OCR, ten at a time with retries. Three analysis passes then find the sites, summarize the general chapters and extract JSON per site — every fact cites its page and keeps the original Russian wording. Site coordinates are checked against a snapshot of Kazakhstan's mineral licence blocks with a Shapely STRtree to flag overlaps with existing claims.</p>
+      <div class="tags">
+        <span class="tag">FastAPI</span>
+        <span class="tag">Gemini 2.5 Flash</span>
+        <span class="tag">S3</span>
+        <span class="tag">SQS FIFO</span>
+        <span class="tag">Shapely</span>
+        <span class="tag">React</span>
+        <span class="tag">Caddy</span>
+        <span class="tag">systemd</span>
+      </div>
+      <div class="dialog__foot">
+        <span class="dialog__meta">Ubuntu VPS &middot; Caddy &middot; systemd</span>
+        <a class="button" href="https://geo-ai.duckdns.org" target="_blank" rel="noopener">Open app</a>
+      </div>
+    </div>
+  </div>
+
   <div class="modal" id="heart-center">
     <a class="modal__backdrop" href="#work" aria-label="Close"></a>
     <div class="dialog" role="dialog" aria-modal="true" aria-label="Heart Center Foundation">
@@ -476,9 +512,11 @@
   var shell = document.querySelector('.shell');
   var opener = null;
 
+  // the opener is whichever in-page link was clicked: the whole card on work
+  // cards, the stretched title link on project cards
   document.addEventListener('click', function (e) {
-    var card = e.target.closest('.card');
-    if (card) opener = card;
+    var link = e.target.closest('.card a[href^="#"], a.card');
+    if (link) opener = link;
   });
 
   function sync() {
@@ -493,9 +531,10 @@
   sync(); // page may have loaded straight into #project
 
   document.addEventListener('keydown', function (e) {
-    if (e.key !== 'Escape' || !document.querySelector('.modal:target')) return;
+    var open = document.querySelector('.modal:target');
+    if (e.key !== 'Escape' || !open) return;
     if (opener) history.back();
-    else location.hash = '#work';
+    else location.hash = open.querySelector('.dialog__close').getAttribute('href');
   });
 })();
 

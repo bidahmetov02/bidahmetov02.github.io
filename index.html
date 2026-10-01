@@ -129,7 +129,7 @@
     <section class="section" id="projects">
       <div class="section__head">
         <h2 class="section__title">Projects</h2>
-        <span class="section__count">01</span>
+        <span class="section__count">02</span>
       </div>
 
       <div class="grid">
@@ -146,14 +146,17 @@
             <p class="card__summary">Turns scanned Russian geological reports into structured, page-cited facts for every site.</p>
           </div>
         </div>
-        <div class="card card--placeholder" aria-hidden="true">
-          <div class="thumb"><span class="thumb__label">Coming soon</span></div>
+        <div class="card card--project">
+          <div class="thumb">
+            <div class="logo logo--dark"><img src="stockwise-logo.png" alt="" loading="lazy"></div>
+            <span class="thumb__label">FastAPI &middot; LightGBM &middot; Docker</span>
+          </div>
           <div class="card__body">
             <div class="card__head">
-              <h3 class="card__title">Project</h3>
-              <span class="card__year">—</span>
+              <h3 class="card__title"><a class="card__link" href="#stockwise">StockWise</a></h3>
+              <a class="card__url" href="https://stock-wise.duckdns.org" target="_blank" rel="noopener">stock-wise.duckdns.org &#8599;</a>
             </div>
-            <p class="card__summary">Placeholder — a write-up lands here.</p>
+            <p class="card__summary">Forecasts 30-day demand for every shop and product, and flags what's understocked or overstocked.</p>
           </div>
         </div>
         <div class="card card--placeholder" aria-hidden="true">
@@ -365,9 +368,10 @@
         </div>
         <a class="dialog__close" href="#projects" aria-label="Close">&times;</a>
       </div>
-      <div class="thumb thumb--lg">
-        <div class="logo logo--dark"><img src="geoai-logo.png" alt="" loading="lazy"></div>
-        <span class="thumb__label">FastAPI &middot; Gemini OCR &middot; AWS</span>
+      <div class="slides">
+        <img src="shots/geoai-1.jpg" alt="GeoAI upload screen for scanned reports" loading="lazy">
+        <img src="shots/geoai-2.jpg" alt="GeoAI analysis summary for a processed document" loading="lazy">
+        <img src="shots/geoai-3.jpg" alt="GeoAI site card flagged as overlapping an active licence block, with page citations" loading="lazy">
       </div>
       <p class="dialog__detail">A FastAPI service that takes scanned Russian geological reports — a PDF, or a ZIP/RAR/7z of page images — and returns structured facts for each site. Uploads are hashed, validated and streamed straight to S3, and re-uploading the same file returns the existing document. Processing is queued through SQS FIFO to a separate worker, one job per document, with a dead-letter queue so nothing stays locked.</p>
       <p class="dialog__detail">Pages with a usable text layer are read directly; the rest go to Gemini 2.5 Flash for OCR, ten at a time with retries. Three analysis passes then find the sites, summarize the general chapters and extract JSON per site — every fact cites its page and keeps the original Russian wording. Site coordinates are checked against a snapshot of Kazakhstan's mineral licence blocks with a Shapely STRtree to flag overlaps with existing claims.</p>
@@ -377,13 +381,43 @@
         <span class="tag">S3</span>
         <span class="tag">SQS FIFO</span>
         <span class="tag">Shapely</span>
-        <span class="tag">React</span>
         <span class="tag">Caddy</span>
         <span class="tag">systemd</span>
       </div>
       <div class="dialog__foot">
         <span class="dialog__meta">Ubuntu VPS &middot; Caddy &middot; systemd</span>
         <a class="button" href="https://geo-ai.duckdns.org" target="_blank" rel="noopener">Open app</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="stockwise">
+    <a class="modal__backdrop" href="#projects" aria-label="Close"></a>
+    <div class="dialog" role="dialog" aria-modal="true" aria-label="StockWise">
+      <div class="dialog__head">
+        <div>
+          <div class="eyebrow eyebrow--tight">Demand forecasting &middot; Live</div>
+          <h3 class="dialog__title">StockWise</h3>
+        </div>
+        <a class="dialog__close" href="#projects" aria-label="Close">&times;</a>
+      </div>
+      <div class="slides">
+        <img src="shots/stockwise-1.jpg" alt="StockWise dashboard of restocking recommendations" loading="lazy">
+        <img src="shots/stockwise-2.jpg" alt="StockWise data overview with forecast coverage" loading="lazy">
+        <img src="shots/stockwise-3.jpg" alt="StockWise 30-day demand forecast chart for one product" loading="lazy">
+      </div>
+      <p class="dialog__detail">Helps a retailer avoid running out of stock or holding too much. Users upload the daily Excel sales and stock reports they export from 1C; a FastAPI backend parses them and stores each user's shops, products, sales and stock separately in Postgres. Every night a batch job refreshes the forecasts, adds up the next 30 days for each SKU and compares it with current stock to flag it as understocked, overstocked or OK &mdash; so the React dashboard reads saved recommendations and never waits on the ML service.</p>
+      <p class="dialog__detail">Forecasting lives in a separate microservice: one global LightGBM model trained on every user's history pooled together, predicting daily demand for each shop&ndash;product pair. Each series is normalized by its own average demand, so small and large sellers share one model fairly. The model retrains weekly on all users' data and trains itself on a fresh deploy. The whole stack runs under Docker Compose on an Oracle VPS, with the host's Caddy as the only public entry point &mdash; it serves the app over HTTPS and forwards /api to a backend that isn't reachable from outside.</p>
+      <div class="tags">
+        <span class="tag">FastAPI</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">LightGBM</span>
+        <span class="tag">Docker Compose</span>
+        <span class="tag">Caddy</span>
+      </div>
+      <div class="dialog__foot">
+        <span class="dialog__meta">Oracle VPS &middot; Docker Compose &middot; Caddy</span>
+        <a class="button" href="https://stock-wise.duckdns.org" target="_blank" rel="noopener">Open app</a>
       </div>
     </div>
   </div>

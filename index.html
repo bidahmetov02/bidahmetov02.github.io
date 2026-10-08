@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<div class="stack-bg" id="stack-bg" aria-hidden="true"></div>
+
 <div class="page">
   <div class="shell">
 
@@ -248,10 +250,10 @@
           <span class="chip">PostgreSQL</span>
           <span class="chip">SQL</span>
           <span class="chip">REST API</span>
-          <span class="chip">TypeScript</span>
           <span class="chip">Node.js</span>
           <span class="chip">React</span>
           <span class="chip">Docker</span>
+          <span class="chip">AWS</span>
           <span class="chip">CI/CD</span>
           <span class="chip">Git</span>
           <span class="chip">TDD</span>
@@ -373,8 +375,16 @@
         <img src="shots/geoai-2.jpg" alt="GeoAI analysis summary for a processed document" loading="lazy">
         <img src="shots/geoai-3.jpg" alt="GeoAI site card flagged as overlapping an active licence block, with page citations" loading="lazy">
       </div>
-      <p class="dialog__detail">A FastAPI service that takes scanned Russian geological reports — a PDF, or a ZIP/RAR/7z of page images — and returns structured facts for each site. Uploads are hashed, validated and streamed straight to S3, and re-uploading the same file returns the existing document. Processing is queued through SQS FIFO to a separate worker, one job per document, with a dead-letter queue so nothing stays locked.</p>
-      <p class="dialog__detail">Pages with a usable text layer are read directly; the rest go to Gemini 2.5 Flash for OCR, ten at a time with retries. Three analysis passes then find the sites, summarize the general chapters and extract JSON per site — every fact cites its page and keeps the original Russian wording. Site coordinates are checked against a snapshot of Kazakhstan's mineral licence blocks with a Shapely STRtree to flag overlaps with existing claims.</p>
+      <p class="dialog__detail">
+        <span class="dialog__line">A FastAPI service that takes scanned Russian geological reports — a PDF, or a ZIP/RAR/7z of page images — and returns structured facts for each site.</span>
+        <span class="dialog__line">Uploads are hashed, validated and streamed straight to S3, and re-uploading the same file returns the existing document.</span>
+        <span class="dialog__line">Processing is queued through SQS FIFO to a separate worker, one job per document, with a dead-letter queue so nothing stays locked.</span>
+      </p>
+      <p class="dialog__detail">
+        <span class="dialog__line">Pages with a usable text layer are read directly; the rest go to Gemini 2.5 Flash for OCR, ten at a time with retries.</span>
+        <span class="dialog__line">Three analysis passes then find the sites, summarize the general chapters and extract JSON per site — every fact cites its page and keeps the original Russian wording.</span>
+        <span class="dialog__line">Site coordinates are checked against a snapshot of Kazakhstan's mineral licence blocks with a Shapely STRtree to flag overlaps with existing claims.</span>
+      </p>
       <div class="tags">
         <span class="tag">FastAPI</span>
         <span class="tag">Gemini 2.5 Flash</span>
@@ -406,8 +416,17 @@
         <img src="shots/stockwise-2.jpg" alt="StockWise data overview with forecast coverage" loading="lazy">
         <img src="shots/stockwise-3.jpg" alt="StockWise 30-day demand forecast chart for one product" loading="lazy">
       </div>
-      <p class="dialog__detail">Helps a retailer avoid running out of stock or holding too much. Users upload the daily Excel sales and stock reports they export from 1C; a FastAPI backend parses them and stores each user's shops, products, sales and stock separately in Postgres. Every night a batch job refreshes the forecasts, adds up the next 30 days for each SKU and compares it with current stock to flag it as understocked, overstocked or OK &mdash; so the React dashboard reads saved recommendations and never waits on the ML service.</p>
-      <p class="dialog__detail">Forecasting lives in a separate microservice: one global LightGBM model trained on every user's history pooled together, predicting daily demand for each shop&ndash;product pair. Each series is normalized by its own average demand, so small and large sellers share one model fairly. The model retrains weekly on all users' data and trains itself on a fresh deploy. The whole stack runs under Docker Compose on an Oracle VPS, with the host's Caddy as the only public entry point &mdash; it serves the app over HTTPS and forwards /api to a backend that isn't reachable from outside.</p>
+      <p class="dialog__detail">
+        <span class="dialog__line">Helps a retailer avoid running out of stock or holding too much.</span>
+        <span class="dialog__line">Users upload the daily Excel sales and stock reports they export from 1C; a FastAPI backend parses them and stores each user's shops, products, sales and stock separately in Postgres.</span>
+        <span class="dialog__line">Every night a batch job refreshes the forecasts, adds up the next 30 days for each SKU and compares it with current stock to flag it as understocked, overstocked or OK &mdash; so the React dashboard reads saved recommendations and never waits on the ML service.</span>
+      </p>
+      <p class="dialog__detail">
+        <span class="dialog__line">Forecasting lives in a separate microservice: one global LightGBM model trained on every user's history pooled together, predicting daily demand for each shop&ndash;product pair.</span>
+        <span class="dialog__line">Each series is normalized by its own average demand, so small and large sellers share one model fairly.</span>
+        <span class="dialog__line">The model retrains weekly on all users' data and trains itself on a fresh deploy.</span>
+        <span class="dialog__line">The whole stack runs under Docker Compose on an Oracle VPS, with the host's Caddy as the only public entry point &mdash; it serves the app over HTTPS and forwards /api to a backend that isn't reachable from outside.</span>
+      </p>
       <div class="tags">
         <span class="tag">FastAPI</span>
         <span class="tag">PostgreSQL</span>
@@ -436,7 +455,10 @@
         <div class="logo logo--light"><img src="heart-center-logo.webp" alt="" loading="lazy"></div>
         <span class="thumb__label">PHP &middot; MVC &middot; Laravel Forge</span>
       </div>
-      <p class="dialog__detail">I maintain a PHP-based web application on an on-demand basis: managing payment integrations, working within an MVC architecture, handling Ubuntu server deployments via Laravel Forge, and delivering bug fixes and new features. The role has sharpened my ability to independently own a production codebase and handle end-to-end delivery.</p>
+      <p class="dialog__detail">
+        <span class="dialog__line">I maintain a PHP-based web application on an on-demand basis: managing payment integrations, working within an MVC architecture, handling Ubuntu server deployments via Laravel Forge, and delivering bug fixes and new features.</span>
+        <span class="dialog__line">The role has sharpened my ability to independently own a production codebase and handle end-to-end delivery.</span>
+      </p>
       <div class="tags">
         <span class="tag">PHP</span>
         <span class="tag">MVC</span>
@@ -464,7 +486,10 @@
         <div class="logo logo--wordmark">Ainity<span class="logo__tld">.io</span></div>
         <span class="thumb__label">NestJS &middot; Vue &middot; OpenAI API</span>
       </div>
-      <p class="dialog__detail">Integrated new CRM systems and maintained server-side and front-end code for an AI-powered web application built on Vue.js, NestJS and PostgreSQL. Shipped features weekly through version control, worked closely with the OpenAI API, and focused on deployment efficiency, scalability and cross-team collaboration.</p>
+      <p class="dialog__detail">
+        <span class="dialog__line">Integrated new CRM systems and maintained server-side and front-end code for an AI-powered web application built on Vue.js, NestJS and PostgreSQL.</span>
+        <span class="dialog__line">Shipped features weekly through version control, worked closely with the OpenAI API, and focused on deployment efficiency, scalability and cross-team collaboration.</span>
+      </p>
       <div class="tags">
         <span class="tag">NestJS</span>
         <span class="tag">Vue.js</span>
@@ -493,7 +518,10 @@
         <div class="logo logo--dark"><img src="ati-logo.png" alt="" loading="lazy"></div>
         <span class="thumb__label">Azure Pipelines &middot; CI/CD</span>
       </div>
-      <p class="dialog__detail">Supported projects and applications for Tengizchevroil, specializing in access management, change management and keeping documentation current. Managed and monitored Azure pipelines — ensuring smooth integrations and resolving pipeline issues — collaborated with business stakeholders on incidents, and took part in regular IT audits.</p>
+      <p class="dialog__detail">
+        <span class="dialog__line">Supported projects and applications for Tengizchevroil, specializing in access management, change management and keeping documentation current.</span>
+        <span class="dialog__line">Managed and monitored Azure pipelines — ensuring smooth integrations and resolving pipeline issues — collaborated with business stakeholders on incidents, and took part in regular IT audits.</span>
+      </p>
       <div class="tags">
         <span class="tag">Azure Pipelines</span>
         <span class="tag">CI/CD</span>
@@ -520,7 +548,10 @@
         <div class="logo logo--light"><img src="guidewire-logo.png" alt="" loading="lazy"></div>
         <span class="thumb__label">React &middot; Micro frontends &middot; a11y</span>
       </div>
-      <p class="dialog__detail">Developed a React-based front-end framework with a focus on accessible (a11y) components and micro-frontend architecture. Built tooling with Webpack, tested with Jest across end-to-end, unit and visual suites, and integrated it all into CI/CD via TeamCity — alongside client-facing bug fixes, technical debt work, and close pairing with teammates.</p>
+      <p class="dialog__detail">
+        <span class="dialog__line">Developed a React-based front-end framework with a focus on accessible (a11y) components and micro-frontend architecture.</span>
+        <span class="dialog__line">Built tooling with Webpack, tested with Jest across end-to-end, unit and visual suites, and integrated it all into CI/CD via TeamCity — alongside client-facing bug fixes, technical debt work, and close pairing with teammates.</span>
+      </p>
       <div class="tags">
         <span class="tag">React</span>
         <span class="tag">Micro frontends</span>
@@ -601,6 +632,87 @@
     window.clearTimeout(timer);
     rf.classList.remove('rf--run');
   }, { threshold: 0 }).observe(rf);
+})();
+// Background tech-stack logos. Each one drifts at its own fraction of the
+// scroll speed - nearer (bigger, brighter) logos move faster - and wraps
+// around off-screen, so the field never runs out however long the page is.
+(function () {
+  var layer = document.getElementById('stack-bg');
+  if (!layer) return;
+
+  // one logo per Skills chip that has one (SQL, REST API, CI/CD, TDD, Agile and
+  // OOP are practices, not brands)
+  var names = ['python', 'fastapi', 'django', 'sqlalchemy', 'postgresql',
+    'nodedotjs', 'react', 'docker', 'amazonaws', 'git'];
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var PAD = 80; // logos wrap this far outside the viewport, so the jump is never seen
+  var items = [], fieldH = 0, ticking = false;
+
+  // seeded, so the layout is the same on every visit
+  var seed = 7;
+  function rand() {
+    seed = (seed + 0x6d2b79f5) | 0;
+    var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  }
+
+  function build() {
+    var w = window.innerWidth, h = window.innerHeight;
+    seed = 7;
+    layer.textContent = '';
+    items = [];
+    fieldH = h + PAD * 2;
+
+    // jittered grid: even coverage without looking like a grid
+    var count = Math.max(10, Math.min(30, Math.round(w * h / 48000)));
+    var cols = Math.max(3, Math.round(Math.sqrt(count * w / fieldH)));
+    var rows = Math.ceil(count / cols);
+    for (var i = 0; i < cols * rows; i++) {
+      var depth = 0.12 + rand() * 0.5;
+      var size = Math.round(16 + depth * 44);
+      var el = document.createElement('span');
+      el.className = 'stack-bg__item';
+      el.style.width = el.style.height = size + 'px';
+      el.style.opacity = (0.05 + depth * 0.12).toFixed(3);
+      var img = document.createElement('img');
+      img.src = 'icons/' + names[i % names.length] + '.svg';
+      img.alt = '';
+      img.style.animationDuration = (9 + rand() * 8).toFixed(1) + 's';
+      img.style.animationDelay = (-rand() * 17).toFixed(1) + 's';
+      el.appendChild(img);
+      layer.appendChild(el);
+      items.push({
+        el: el,
+        x: ((i % cols) + 0.15 + rand() * 0.7) / cols * w - size / 2,
+        y: (Math.floor(i / cols) + 0.15 + rand() * 0.7) / rows * fieldH,
+        depth: depth
+      });
+    }
+    place();
+  }
+
+  function place() {
+    ticking = false;
+    var sy = still ? 0 : window.scrollY;
+    for (var i = 0; i < items.length; i++) {
+      var it = items[i];
+      var y = ((it.y - sy * it.depth) % fieldH + fieldH) % fieldH - PAD;
+      it.el.style.transform = 'translate3d(' + it.x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)';
+    }
+  }
+
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(build, 150);
+  });
+  if (!still) {
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(place); }
+    }, { passive: true });
+  }
+  build();
 })();
 </script>
 </body>

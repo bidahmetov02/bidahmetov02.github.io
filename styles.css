@@ -292,6 +292,7 @@ a { color: var(--accent); text-decoration: none; }
 }
 
 .logo__tld { color: var(--accent); }
+.logo__br { color: var(--text-faint); font-weight: 300; }
 
 .thumb--lg .logo { padding: 20px 26px; }
 .thumb--lg .logo--wordmark { font-size: 30px; }

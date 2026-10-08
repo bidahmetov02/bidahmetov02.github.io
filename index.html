@@ -131,7 +131,7 @@
     <section class="section" id="projects">
       <div class="section__head">
         <h2 class="section__title">Projects</h2>
-        <span class="section__count">02</span>
+        <span class="section__count">03</span>
       </div>
 
       <div class="grid">
@@ -161,14 +161,17 @@
             <p class="card__summary">Forecasts 30-day demand for every shop and product, and flags what's understocked or overstocked.</p>
           </div>
         </div>
-        <div class="card card--placeholder" aria-hidden="true">
-          <div class="thumb"><span class="thumb__label">Coming soon</span></div>
+        <div class="card card--project">
+          <div class="thumb">
+            <div class="logo logo--wordmark"><span class="logo__br">[</span>audar<span class="logo__tld">./</span><span class="logo__br">]</span></div>
+            <span class="thumb__label">FastAPI &middot; DeepL &middot; AWS</span>
+          </div>
           <div class="card__body">
             <div class="card__head">
-              <h3 class="card__title">Project</h3>
-              <span class="card__year">—</span>
+              <h3 class="card__title"><a class="card__link" href="#audar">audar</a></h3>
+              <a class="card__url" href="https://doctranslator.duckdns.org" target="_blank" rel="noopener">doctranslator.duckdns.org &#8599;</a>
             </div>
-            <p class="card__summary">Placeholder — a write-up lands here.</p>
+            <p class="card__summary">Translates Word documents between Kazakh and Russian, keeping their layout and formatting intact.</p>
           </div>
         </div>
       </div>
@@ -437,6 +440,47 @@
       <div class="dialog__foot">
         <span class="dialog__meta">Oracle VPS &middot; Docker Compose &middot; Caddy</span>
         <a class="button" href="https://stock-wise.duckdns.org" target="_blank" rel="noopener">Open app</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="audar">
+    <a class="modal__backdrop" href="#projects" aria-label="Close"></a>
+    <div class="dialog" role="dialog" aria-modal="true" aria-label="audar">
+      <div class="dialog__head">
+        <div>
+          <div class="eyebrow eyebrow--tight">Document translation &middot; Live</div>
+          <h3 class="dialog__title">audar</h3>
+        </div>
+        <a class="dialog__close" href="#projects" aria-label="Close">&times;</a>
+      </div>
+      <div class="thumb thumb--lg">
+        <div class="logo logo--wordmark"><span class="logo__br">[</span>audar<span class="logo__tld">./</span><span class="logo__br">]</span></div>
+        <span class="thumb__label">FastAPI &middot; DeepL &middot; AWS</span>
+      </div>
+      <p class="dialog__detail">
+        <span class="dialog__line">Translates .docx files between Kazakh and Russian in place, so the result keeps the original's structure and formatting.</span>
+        <span class="dialog__line">The document, headers, footers and footnotes are edited as lxml trees; each paragraph becomes tagged text, with formatting, tabs, breaks and embedded objects as XML tags, and every piece goes to DeepL in one ordered batch.</span>
+        <span class="dialog__line">Runs are rebuilt from the formatting saved per tag, and a paragraph whose tags come back broken falls back to plain text in its first run instead of corrupting the file.</span>
+      </p>
+      <p class="dialog__detail">
+        <span class="dialog__line">A FastAPI backend handles email and password sign-in with rotating JWT refresh tokens in HttpOnly cookies, validates uploads as real .docx files and stores them in a private S3 bucket; downloads are short-lived presigned URLs.</span>
+        <span class="dialog__line">Each upload becomes a job on SQS with a dead-letter queue, and a separate worker translates it, skipping finished jobs and retrying only transient errors.</span>
+        <span class="dialog__line">Per-document and monthly per-user character limits, plus a global stop that keeps a reserve of DeepL credit, keep translation costs bounded. It runs under Docker Compose on an Oracle VPS behind Caddy.</span>
+      </p>
+      <div class="tags">
+        <span class="tag">FastAPI</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">DeepL API</span>
+        <span class="tag">lxml</span>
+        <span class="tag">S3</span>
+        <span class="tag">SQS</span>
+        <span class="tag">Docker Compose</span>
+        <span class="tag">Caddy</span>
+      </div>
+      <div class="dialog__foot">
+        <span class="dialog__meta">Oracle VPS &middot; Docker Compose &middot; Caddy</span>
+        <a class="button" href="https://doctranslator.duckdns.org" target="_blank" rel="noopener">Open app</a>
       </div>
     </div>
   </div>

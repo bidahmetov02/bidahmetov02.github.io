@@ -614,6 +614,50 @@ a { color: var(--accent); text-decoration: none; }
   margin-top: 8px;
 }
 
+/* a modal covering several small bots: one row per bot in place of screenshots */
+.bots { margin-bottom: 28px; }
+
+.bot {
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+.bot:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.bot:last-child { padding-bottom: 0; }
+
+.bot__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px 12px;
+  margin-bottom: 10px;
+}
+
+.bot__name {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+a.bot__name { color: var(--accent); }
+a.bot__name:hover { color: #ffffff; }
+
+.bot__kind {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.bot .dialog__detail { margin-bottom: 0; }
+
 .tags {
   display: flex;
   flex-wrap: wrap;

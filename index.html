@@ -131,7 +131,7 @@
     <section class="section" id="projects">
       <div class="section__head">
         <h2 class="section__title">Projects</h2>
-        <span class="section__count">03</span>
+        <span class="section__count">05</span>
       </div>
 
       <div class="grid">
@@ -174,6 +174,32 @@
             <p class="card__summary">Translates Word documents between Kazakh and Russian, keeping their layout and formatting intact.</p>
           </div>
         </div>
+        <div class="card card--project">
+          <div class="thumb">
+            <div class="logo logo--dark"><img src="kyzyl-tu-logo.png" alt="" loading="lazy"></div>
+            <span class="thumb__label">Bedrock &middot; pgvector &middot; aiogram</span>
+          </div>
+          <div class="card__body">
+            <div class="card__head">
+              <h3 class="card__title"><a class="card__link" href="#kyzyl-tu">Kyzyl Tu Detector</a></h3>
+              <a class="card__url" href="https://t.me/Kyzyl_Tu_bot" target="_blank" rel="noopener">@Kyzyl_Tu_bot &#8599;</a>
+            </div>
+            <p class="card__summary">A Telegram chatbot that gives blunt, witty advice on dating, relationships and human behavior.</p>
+          </div>
+        </div>
+        <div class="card card--project">
+          <div class="thumb">
+            <div class="logo logo--dark"><img src="aiogram-logo.png" alt="" loading="lazy"></div>
+            <span class="thumb__label">aiogram 3 &middot; Pillow &middot; systemd</span>
+          </div>
+          <div class="card__body">
+            <div class="card__head">
+              <h3 class="card__title"><a class="card__link" href="#tg-bots">Telegram bots</a></h3>
+              <span class="card__year">3 bots</span>
+            </div>
+            <p class="card__summary">Three small aiogram bots: a procurement deal calculator, a photo template generator and a private birthday assistant.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -191,7 +217,7 @@
           </div>
           <div class="card__body">
             <div class="card__head">
-              <h3 class="card__title">Heart Center Foundation</h3>
+              <h3 class="card__title">HCF (On-Demand)</h3>
               <span class="card__year">2025 &mdash; now</span>
             </div>
             <p class="card__summary">Maintaining a production PHP application end to end — payments, features, deployments.</p>
@@ -205,7 +231,7 @@
           </div>
           <div class="card__body">
             <div class="card__head">
-              <h3 class="card__title">Ainity.io</h3>
+              <h3 class="card__title">Ainity.io (Project based)</h3>
               <span class="card__year">2025</span>
             </div>
             <p class="card__summary">CRM integrations and server-side work for an AI-powered web product.</p>
@@ -248,19 +274,18 @@
         <div class="chips">
           <span class="chip">Python</span>
           <span class="chip">FastAPI</span>
+          <span class="chip">AWS</span>
           <span class="chip">Django</span>
           <span class="chip">SQLAlchemy</span>
           <span class="chip">PostgreSQL</span>
           <span class="chip">SQL</span>
           <span class="chip">REST API</span>
-          <span class="chip">Node.js</span>
           <span class="chip">React</span>
           <span class="chip">Docker</span>
-          <span class="chip">AWS</span>
           <span class="chip">CI/CD</span>
           <span class="chip">Git</span>
-          <span class="chip">TDD</span>
-          <span class="chip">Agile / Scrum</span>
+          <span class="chip">Agile/Scrum</span>
+          <span class="chip">Aiogram</span>
           <span class="chip">OOP</span>
         </div>
       </div>
@@ -271,14 +296,14 @@
           <div class="role">
             <span class="role__period">2025 — now</span>
             <div>
-              <div class="role__title">Fullstack Developer</div>
+              <div class="role__title">Fullstack Developer (On-Demand)</div>
               <div class="role__company">Heart Center Foundation, Astana</div>
             </div>
           </div>
           <div class="role">
             <span class="role__period">2025</span>
             <div>
-              <div class="role__title">Fullstack Developer</div>
+              <div class="role__title">Fullstack Developer (Project based)</div>
               <div class="role__company">Ainity.io</div>
             </div>
           </div>
@@ -293,7 +318,7 @@
             <span class="role__period">2022 — 2024</span>
             <div>
               <div class="role__title">Software Engineer I</div>
-              <div class="role__company">Guidewire Software</div>
+              <div class="role__company">Guidewire Software, Krakow</div>
             </div>
           </div>
         </div>
@@ -482,6 +507,110 @@
       <div class="dialog__foot">
         <span class="dialog__meta">Oracle VPS &middot; Docker Compose &middot; Caddy</span>
         <a class="button" href="https://doctranslator.duckdns.org" target="_blank" rel="noopener">Open app</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="kyzyl-tu">
+    <a class="modal__backdrop" href="#projects" aria-label="Close"></a>
+    <div class="dialog" role="dialog" aria-modal="true" aria-label="Kyzyl Tu Detector">
+      <div class="dialog__head">
+        <div>
+          <div class="eyebrow eyebrow--tight">RAG chatbot &middot; Live</div>
+          <h3 class="dialog__title">Kyzyl Tu Detector</h3>
+        </div>
+        <a class="dialog__close" href="#projects" aria-label="Close">&times;</a>
+      </div>
+      <div class="slides">
+        <img src="shots/kyzyl-tu-1.jpg" alt="Kyzyl Tu Detector in Telegram, answering a dating question after a hybrid RAG search" loading="lazy">
+      </div>
+      <p class="dialog__detail">
+        <span class="dialog__line">A Telegram bot that answers dating, relationship and psychology questions in a custom persona, grounded in about 700 transcripts from one YouTube channel.</span>
+        <span class="dialog__line">An offline yt-dlp pipeline downloads subtitles and metadata for every video and live stream and resumes after interruption; regex cleanup strips noise tags and fixes commonly misheard names while keeping each segment's timestamp.</span>
+        <span class="dialog__line">The transcripts become about 5,600 overlapping 90-second chunks, each with a wider context window and a link that opens the video at the exact second, embedded in parallel with Titan Text Embeddings v2 and stored in pgvector on RDS.</span>
+        <span class="dialog__line">Hybrid search combines pgvector cosine similarity (HNSW) with Postgres full-text search (GIN), merges the two lists with Reciprocal Rank Fusion and drops near-duplicate hits from the same part of a video.</span>
+      </p>
+      <p class="dialog__detail">
+        <span class="dialog__line">A stateless agent on the Bedrock Converse streaming API with Claude Haiku 4.5 decides on each turn whether to call a search_channel tool, with a cap on the number of searches.</span>
+        <span class="dialog__line">The system prompt keeps answers in persona and based on retrieved content rather than general model knowledge, blocks diagnoses and medication advice, and drops the persona to share crisis resources when a user signals risk of harm.</span>
+        <span class="dialog__line">Tokens are counted to show how full the context is; the bot warns at 80% and asks for a new chat when it's full.</span>
+        <span class="dialog__line">The aiogram bot runs as a systemd service on an Oracle VPS, stores users, conversations and messages &mdash; with sources and token usage &mdash; in Postgres through SQLAlchemy and Alembic, and shows sources as timestamped link buttons under each reply.</span>
+      </p>
+      <div class="tags">
+        <span class="tag">AWS Bedrock</span>
+        <span class="tag">Claude Haiku 4.5</span>
+        <span class="tag">Titan Embeddings</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">pgvector</span>
+        <span class="tag">SQLAlchemy</span>
+        <span class="tag">aiogram</span>
+        <span class="tag">yt-dlp</span>
+        <span class="tag">systemd</span>
+      </div>
+      <div class="dialog__foot">
+        <span class="dialog__meta">Oracle VPS &middot; AWS RDS &middot; systemd</span>
+        <a class="button" href="https://t.me/Kyzyl_Tu_bot" target="_blank" rel="noopener">Open bot</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="tg-bots">
+    <a class="modal__backdrop" href="#projects" aria-label="Close"></a>
+    <div class="dialog" role="dialog" aria-modal="true" aria-label="Telegram bots">
+      <div class="dialog__head">
+        <div>
+          <div class="eyebrow eyebrow--tight">Small tools &middot; aiogram 3</div>
+          <h3 class="dialog__title">Telegram bots</h3>
+        </div>
+        <a class="dialog__close" href="#projects" aria-label="Close">&times;</a>
+      </div>
+      <div class="thumb thumb--lg">
+        <div class="logo logo--dark"><img src="aiogram-logo.png" alt="" loading="lazy"></div>
+        <span class="thumb__label">aiogram 3 &middot; Pillow &middot; systemd</span>
+      </div>
+      <div class="bots">
+        <div class="bot">
+          <div class="bot__head">
+            <a class="bot__name" href="https://t.me/goszakup_helper_bot" target="_blank" rel="noopener">@goszakup_helper_bot &#8599;</a>
+            <span class="bot__kind">Procurement calculator</span>
+          </div>
+          <p class="dialog__detail">
+            <span class="dialog__line">Works out government procurement deals in Kazakhstan &mdash; pricing, tax, profit, delivery and penalty scenarios.</span>
+            <span class="dialog__line">The user is walked through it step by step, with FSM states and inline keyboards; it runs as a systemd service.</span>
+          </p>
+        </div>
+        <div class="bot">
+          <div class="bot__head">
+            <a class="bot__name" href="https://t.me/greenleafImageBot" target="_blank" rel="noopener">@greenleafImageBot &#8599;</a>
+            <span class="bot__kind">Image generator</span>
+          </div>
+          <p class="dialog__detail">
+            <span class="dialog__line">Puts a user's photo and name onto a chosen social-media template.</span>
+            <span class="dialog__line">Pillow does the compositing and text rendering; FSM states and reply keyboards guide the flow, with controls to adjust the scaling of the final image.</span>
+          </p>
+        </div>
+        <div class="bot">
+          <div class="bot__head">
+            <span class="bot__name">@BeksssAssistantBot</span>
+            <span class="bot__kind">Private assistant</span>
+          </div>
+          <p class="dialog__detail">
+            <span class="dialog__line">A personal assistant for birthday reminders and contacts, open only to an allow-list of users.</span>
+            <span class="dialog__line">Birthdays are kept in JSON files, and a background asyncio task sends the day's reminders every morning at 9:00; it runs as a systemd service.</span>
+          </p>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">Python</span>
+        <span class="tag">aiogram 3</span>
+        <span class="tag">FSM</span>
+        <span class="tag">Pillow</span>
+        <span class="tag">asyncio</span>
+        <span class="tag">python-dotenv</span>
+        <span class="tag">systemd</span>
+      </div>
+      <div class="dialog__foot">
+        <span class="dialog__meta">Python &middot; aiogram 3 &middot; systemd</span>
       </div>
     </div>
   </div>

@@ -297,6 +297,56 @@ a { color: var(--accent); text-decoration: none; }
 .thumb--lg .logo { padding: 20px 26px; }
 .thumb--lg .logo--wordmark { font-size: 30px; }
 
+/* the placeholder's picture: a wireframe cube on a dot grid, its last two
+   edges tracing in on a loop as if still being drawn */
+.logo--wip {
+  padding: 10px;
+  background:
+    radial-gradient(circle, #383f49 1.2px, transparent 1.5px) center / 12px 12px,
+    #0f1317;
+}
+
+.wip {
+  display: block;
+  height: 100%;
+  overflow: visible;
+}
+
+.wip__edge,
+.wip__build {
+  fill: none;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.wip__edge { stroke: var(--text-dim); }
+
+.wip__build {
+  stroke: var(--accent);
+  stroke-dasharray: 1;
+  animation: wipBuild 4s ease-in-out infinite;
+}
+
+.wip__node { fill: var(--text-dim); }
+
+.wip__node--live {
+  fill: var(--accent);
+  animation: wipPulse 4s ease-in-out infinite;
+}
+
+@keyframes wipBuild {
+  0%       { stroke-dashoffset: 1; }
+  60%, 85% { stroke-dashoffset: 0; }
+  100%     { stroke-dashoffset: -1; }
+}
+
+@keyframes wipPulse {
+  0%, 50%  { opacity: 0.25; }
+  60%, 85% { opacity: 1; }
+  100%     { opacity: 0.25; }
+}
+
 /* project modals: three screenshots crossfading on a loop. The first one is a
    static base layer and the other two fade in over it, so a crossfade never
    dips through to the background. The modal is display:none until targeted,

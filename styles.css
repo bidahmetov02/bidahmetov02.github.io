@@ -294,6 +294,15 @@ a { color: var(--accent); text-decoration: none; }
 .logo__tld { color: var(--accent); }
 .logo__br { color: var(--text-faint); font-weight: 300; }
 
+/* Sakshy's helmet mark, inline so its body follows the text colour */
+.logo--sakshy { gap: 10px; }
+
+.logo__mark {
+  display: block;
+  height: 1.4em;
+  width: auto;
+}
+
 .thumb--lg .logo { padding: 20px 26px; }
 .thumb--lg .logo--wordmark { font-size: 30px; }
 
@@ -752,6 +761,27 @@ a.bot__name:hover { color: #ffffff; }
 .button:hover {
   opacity: 0.85;
   color: var(--bg);
+}
+
+.dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.button--ghost {
+  background: none;
+  border: 1px solid var(--line-chip);
+  color: var(--text);
+  padding: 11px 23px;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.button--ghost:hover {
+  opacity: 1;
+  border-color: var(--accent);
+  color: #ffffff;
 }
 
 /* ------------------------------------------------------------ responsive */

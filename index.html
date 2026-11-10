@@ -131,10 +131,37 @@
     <section class="section" id="projects">
       <div class="section__head">
         <h2 class="section__title">Projects</h2>
-        <span class="section__count">05</span>
+        <span class="section__count">06</span>
       </div>
 
       <div class="grid">
+        <div class="card card--project">
+          <div class="thumb">
+            <div class="logo logo--wordmark logo--sakshy">
+              <svg class="logo__mark" viewBox="10 8 202 258" aria-hidden="true" focusable="false">
+                <g fill="currentColor">
+                  <path d="M111 12C118 20 123 27 123 34C123 43 117 50 111 54C105 50 99 43 99 34C99 27 104 20 111 12Z"/>
+                  <rect x="107" y="50" width="8" height="24"/>
+                  <path d="M111 71L68 102C40 122 23 142 23 169H199C199 142 182 122 154 102Z"/>
+                  <rect x="13" y="175" width="196" height="20" rx="8"/>
+                  <path d="M23 205H78V248C66 254 57 262 46 262C37 262 29 259 23 255Z"/>
+                  <path d="M199 205H144V248C156 254 165 262 176 262C185 262 193 259 199 255Z"/>
+                  <rect x="102" y="200" width="18" height="52" rx="7"/>
+                </g>
+                <polyline points="45,142 78,142 93,112 115,166 130,132 140,142 177,142" fill="none" stroke="#1ea34a" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              sakshy
+            </div>
+            <span class="thumb__label">FastAPI &middot; PostgreSQL &middot; SSE</span>
+          </div>
+          <div class="card__body">
+            <div class="card__head">
+              <h3 class="card__title"><a class="card__link" href="#sakshy">Sakshy</a></h3>
+              <a class="card__url" href="https://sakshy.duckdns.org" target="_blank" rel="noopener">sakshy.duckdns.org &#8599;</a>
+            </div>
+            <p class="card__summary">Monitors websites, shows their status live and emails you when one goes down and when it recovers.</p>
+          </div>
+        </div>
         <div class="card card--project">
           <div class="thumb">
             <div class="logo logo--dark"><img src="geoai-logo.png" alt="" loading="lazy"></div>
@@ -410,6 +437,53 @@
       </div>
     </footer>
 
+  </div>
+
+  <div class="modal" id="sakshy">
+    <a class="modal__backdrop" href="#projects" aria-label="Close"></a>
+    <div class="dialog" role="dialog" aria-modal="true" aria-label="Sakshy">
+      <div class="dialog__head">
+        <div>
+          <div class="eyebrow eyebrow--tight">Uptime monitoring &middot; Live</div>
+          <h3 class="dialog__title">Sakshy</h3>
+        </div>
+        <a class="dialog__close" href="#projects" aria-label="Close">&times;</a>
+      </div>
+      <div class="slides">
+        <img src="shots/sakshy-1.jpg" alt="Sakshy dashboard with two of seven sites down, one of them in a maintenance window" loading="lazy">
+        <img src="shots/sakshy-2.jpg" alt="Sakshy check page with 24-hour uptime and response-time chart" loading="lazy">
+        <img src="shots/sakshy-3.jpg" alt="Sakshy public status page showing a partial outage and 30-day uptime bars" loading="lazy">
+      </div>
+      <p class="dialog__detail">
+        <span class="dialog__line">Checks websites on an interval from 30 seconds to an hour, shows their status live and emails when one goes down and when it recovers.</span>
+        <span class="dialog__line">Checks can share an alert list through groups, maintenance windows hold back alerts, and public status pages show 30 days of uptime per service.</span>
+        <span class="dialog__line">A FastAPI backend serves a React and TypeScript dashboard; the API never runs checks, so a slow site can't slow down the UI.</span>
+      </p>
+      <p class="dialog__detail">
+        <span class="dialog__line">A separate asyncio worker claims due checks from Postgres with leases and SKIP LOCKED, so any number of workers can run side by side and a crashed worker's checks are picked up when its lease expires.</span>
+        <span class="dialog__line">A pure state machine decides when a site is down &mdash; three failures in a row, with retries 10 seconds apart &mdash; and each result is committed with its incident, outbox email and a pg_notify in one transaction; the API listens and pushes updates to browsers over SSE.</span>
+        <span class="dialog__line">Probes resolve every host themselves and refuse private addresses, covering redirects and DNS rebinding. Raw results live in daily partitions, rolled up hourly.</span>
+        <span class="dialog__line">In a load test one worker kept 3,000 checks on a 30-second interval on time and two kept 9,000, with the dashboard API under 25 ms at p95. It runs under Docker Compose on a VPS behind Caddy, alerting by email and Telegram.</span>
+      </p>
+      <div class="tags">
+        <span class="tag">FastAPI</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">SQLAlchemy</span>
+        <span class="tag">asyncio</span>
+        <span class="tag">SSE</span>
+        <span class="tag">React</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Docker Compose</span>
+        <span class="tag">Caddy</span>
+      </div>
+      <div class="dialog__foot">
+        <span class="dialog__meta">Ubuntu VPS &middot; Docker Compose &middot; Caddy</span>
+        <div class="dialog__actions">
+          <a class="button button--ghost" href="https://github.com/bidahmetov02/Sakshy" target="_blank" rel="noopener">Source</a>
+          <a class="button" href="https://sakshy.duckdns.org" target="_blank" rel="noopener">Open app</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="modal" id="geoai">
